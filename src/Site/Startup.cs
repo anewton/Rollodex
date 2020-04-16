@@ -28,6 +28,9 @@ namespace Site
 
             app.UseRouting();
 
+            app.UseStaticFiles();
+            app.UseDefaultFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
