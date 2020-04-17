@@ -25,6 +25,19 @@ Technical Requirements
     dotnet ef database update -p ./src/Data/Data.csproj -s ./src/Site/Site.csproj
     ```
 ## To create initial Site project
+ - Use the Angular project template to create the correct settings for running a SPA application
+ - Then make edits to the Startup.cs and Program.cs as needed to incorporate Autofac, API Controllers, and other database startup configuration
     ```
     dotnet new angular --no-https --auth None
     ```
+
+## Remaining items to complete (TODO)
+ - Add a user contact
+ - Delete a user contact
+ - Edit a user contact
+ - Page the UI grid of user contacts
+ - Unit testing of repository methods implemented and not in DbRepository.cs
+ - Unit testing of service layer methods
+ - Integration testing of UI
+ - Load testing of the app to assure scalability to 20,000 users daily with ~1,000 contact records each (JMeter or other tool configuration and scripting)
+ - Build and publish CI/CD
