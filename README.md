@@ -24,3 +24,7 @@ Technical Requirements
     dotnet ef migrations add InitialCreate -p ./src/Data/Data.csproj -s ./src/Site/Site.csproj
     dotnet ef database update -p ./src/Data/Data.csproj -s ./src/Site/Site.csproj
     ```
+## To create initial Site project
+    ```
+    dotnet new angular --no-https --auth None
+    ```
