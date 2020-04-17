@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Data.Models.Contacts;
+using Data.Models.Domain;
 using Data.RepoBase;
 using Microsoft.EntityFrameworkCore;
 

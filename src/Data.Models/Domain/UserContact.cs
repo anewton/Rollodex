@@ -1,7 +1,5 @@
-using Data.Models.Contacts;
-using Data.Models.Identity;
 
-namespace Data.Models
+namespace Data.Models.Domain
 {
     public class UserContact : UserContact<int>
     {

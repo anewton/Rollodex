@@ -1,6 +1,4 @@
-﻿using Data.Models;
-using Data.Models.Contacts;
-using Data.Models.Identity;
+﻿using Data.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data

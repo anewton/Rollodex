@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Data.Models.Contacts;
+using Data.Models.Domain;
 using Data.Repo;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

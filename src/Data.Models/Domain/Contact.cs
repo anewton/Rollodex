@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Data.Models.Contacts
+namespace Data.Models.Domain
 {
     public class Contact : IEntity
     {

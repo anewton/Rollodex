@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Data.Models.Identity;
+using Data.Models.Domain;
 using Data.RepoBase;
 
 namespace Data.Repo
