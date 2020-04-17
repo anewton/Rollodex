@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Services.Identity
 {
+    [Route("api/[controller]")]
     public class UserService : Controller
     {
         private readonly IUserRepo _userRepo;
@@ -14,11 +15,11 @@ namespace Services.Identity
             _userRepo = userRepo;
         }
 
-        [Route("/Register")]
-        public async Task<IActionResult> RegisterAsync([FromBody] UserRegistration userRegistration)
+        [Route("Register")]
+        public async Task<int> RegisterAsync([FromBody] UserRegistration userRegistration)
         {
-            await _userRepo.RegisterUserAsync(userRegistration.UserName);
-            return Ok();
+            var userId = await _userRepo.RegisterUserAsync(userRegistration.UserName);
+            return userId;
         }
     }
 }

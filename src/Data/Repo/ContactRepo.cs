@@ -9,7 +9,7 @@ namespace Data.Repo
 {
     public interface IContactRepo : IDbRepository
     {
-        Task<IQueryable<Contact>> GetQueryableContactsForUserAsync(int userId);
+        Task<IEnumerable<Contact>> GetQueryableContactsForUserAsync(int userId);
         Task<IEnumerable<Contact>> PageAllForUserAsync(int userId, int skip, int take);
     }
 
@@ -20,7 +20,7 @@ namespace Data.Repo
 
         }
 
-        public async Task<IQueryable<Contact>> GetQueryableContactsForUserAsync(int userId)
+        public async Task<IEnumerable<Contact>> GetQueryableContactsForUserAsync(int userId)
         {
             var context = (SiteContext)_dbContext;
             var result = await (from c in context.Contacts
@@ -28,7 +28,7 @@ namespace Data.Repo
                                 on c.Id equals uc.ContactId
                                 where uc.Id == userId
                                 select c).ToListAsync();
-            return result.AsQueryable();
+            return result;
         }
 
         public async Task<IEnumerable<Contact>> PageAllForUserAsync(int userId, int skip, int take)

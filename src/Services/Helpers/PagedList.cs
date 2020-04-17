@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Services.Helpers
 {
     public class PagedList<T> : List<T>
     {
 
-        public static async Task<PagedList<T>> CreateAsync(IQueryable<T> source, int pageIndex, int pageSize)
+        public static PagedList<T> Create(IEnumerable<T> source, int pageIndex, int pageSize)
         {
-            var count = await source.CountAsync();
-            var items = await source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
+            var count = source.Count();
+            var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             return new PagedList<T>(items, count, pageIndex, pageSize);
         }
 
@@ -45,11 +46,13 @@ namespace Services.Helpers
             EndPage = endPage;
         }
 
-        public int TotalItems { get; private set; }
-        public int CurrentPage { get; private set; }
-        public int PageSize { get; private set; }
-        public int TotalPages { get; private set; }
-        public int StartPage { get; private set; }
-        public int EndPage { get; private set; }
+        [JsonProperty("TotalItems")]
+        public int TotalItems { get; set; }
+        
+        public int CurrentPage { get; set; }
+        public int PageSize { get; set; }
+        public int TotalPages { get; set; }
+        public int StartPage { get; set; }
+        public int EndPage { get; set; }
     }
 }

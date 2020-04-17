@@ -7,18 +7,17 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { LoginComponent } from './login/login.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { MyContactsComponent } from './my-contacts/my-contacts.component';
+import { UserIdService } from "./userId.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
     LoginComponent,
-    FetchDataComponent
+    MyContactsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,12 +25,10 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [],
+  providers: [UserIdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

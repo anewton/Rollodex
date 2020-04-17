@@ -7,6 +7,7 @@ using Services.Helpers;
 
 namespace Services.Rollodex
 {
+    [Route("api/[controller]")]
     public class ContactService : Controller
     {
         private readonly IContactRepo _contactRepo;
@@ -16,25 +17,29 @@ namespace Services.Rollodex
             _contactRepo = contactRepo;
         }
 
+        [Route("Add")]
         public IActionResult AddContact()
         {
             return Ok();
         }
 
+        [Route("Remove")]
         public IActionResult RemoveContact()
         {
             return Ok();
         }
 
+        [Route("Update")]
         public IActionResult UpdateContact()
         {
             return Ok();
         }
 
-        public async Task<PagedList<Contact>> GetAllContactsForUserPaged(int userId, int pageIndex, int pageSize)
+        [Route("GetContactsForUser/{userId}/{pageIndex}/{pageSize}")]
+        public async Task<PagedList<Contact>> GetAllContactsForUserPaged([FromRoute] int userId, [FromRoute] int pageIndex, [FromRoute] int pageSize)
         {
             var contactsQueryable = await _contactRepo.GetQueryableContactsForUserAsync(userId);
-            var pagedContacts = await PagedList<Contact>.CreateAsync(contactsQueryable.AsNoTracking(), pageIndex, pageSize);
+            var pagedContacts = PagedList<Contact>.Create(contactsQueryable, pageIndex, pageSize);
             return pagedContacts;
         }
     }

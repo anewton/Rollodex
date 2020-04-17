@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(SiteContext))]
-    [Migration("20200416231813_InitialCreate")]
+    [Migration("20200417045559_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,7 +18,7 @@ namespace Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3");
 
-            modelBuilder.Entity("Data.Models.Contacts.Contact", b =>
+            modelBuilder.Entity("Data.Models.Domain.Contact", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,18 +38,21 @@ namespace Data.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("Data.Models.Identity.SiteUser", b =>
+            modelBuilder.Entity("Data.Models.Domain.SiteUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Data.Models.UserContact", b =>
+            modelBuilder.Entity("Data.Models.Domain.UserContact", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("INTEGER");
@@ -69,21 +72,21 @@ namespace Data.Migrations
                     b.ToTable("UserContacts");
                 });
 
-            modelBuilder.Entity("Data.Models.UserContact", b =>
+            modelBuilder.Entity("Data.Models.Domain.UserContact", b =>
                 {
-                    b.HasOne("Data.Models.Contacts.Contact", "Contact")
+                    b.HasOne("Data.Models.Domain.Contact", "Contact")
                         .WithMany("UserContacts")
                         .HasForeignKey("ContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Models.Identity.SiteUser", null)
+                    b.HasOne("Data.Models.Domain.SiteUser", null)
                         .WithMany("UserContacts")
                         .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Models.Identity.SiteUser", "User")
+                    b.HasOne("Data.Models.Domain.SiteUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });

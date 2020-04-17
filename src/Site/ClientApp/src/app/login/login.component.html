@@ -1,3 +1,8 @@
 <h1>Login</h1>
 
-<button class="btn btn-primary" (click)="login()">Increment</button>
+<div class="form-group">
+Enter a user name: <input type="text" [(ngModel)]="userName" class="form-control col-md-3">
+<br />
+<button class="btn btn-primary" (click)="login()">Login</button>
+</div>
+<app-my-contacts></app-my-contacts>

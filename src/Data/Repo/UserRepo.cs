@@ -24,6 +24,7 @@ namespace Data.Repo
             if (user == null)
             {
                 var newUser = await _dbContext.AddAsync<SiteUser>(new SiteUser() { UserName = userName });
+                await _dbContext.SaveChangesAsync();
                 return newUser.Entity.Id;
             }
             else

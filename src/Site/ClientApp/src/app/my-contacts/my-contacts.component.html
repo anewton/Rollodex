@@ -1,0 +1,35 @@
+<div *ngIf="isShowingEditors" >
+<h1>Contacts</h1>
+
+<!-- Add Contact -->
+<div class="form-group" >
+    Add a new contact:
+    <input type="text" [(ngModel)]="newContact.Email" class="form-control col-md-3" placeholder="Email">
+    <br />
+    <input type="text" [(ngModel)]="newContact.Name" class="form-control col-md-3" placeholder="Name">
+    <br />
+    <input type="text" [(ngModel)]="newContact.Address" class="form-control col-md-3" placeholder="Address">
+    <br />
+    <button class="btn btn-primary" (click)="addContact()">Add Contact</button>
+</div>
+
+
+<!-- Contacts grid here -->
+<table class="table" >
+    <th *ngFor="let col of headers; let i = index">
+        <div *ngIf="i > 1">{{ headers[i]}}</div>
+    </th>
+    <tr *ngFor="let row of contacts">
+        <td *ngFor="let column of headers; let j = index">
+            <div *ngIf="j === 0">
+                <button class="btn btn-warning" (click)="deleteContact()">Del</button>
+            </div>
+            <div *ngIf="j === 1">
+                <button class="btn btn-secondary" (click)="editContact()">Edit</button>
+            </div>
+            <div *ngIf="j > 1">{{row[column]}}</div>
+        </td>
+    </tr>
+</table>
+
+</div>
