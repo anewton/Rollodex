@@ -13,3 +13,14 @@ Technical Requirements
  - A database backend (candidate’s discretion, but should reflect a production-based solution)
    - Use YOUR preferred method for DB communication (e.g. DB/SQL client, an ORM, etc.) 
 
+## To create initial database
+ - Create data models
+ - Create a data context for the models
+ - Update data context with correct model DbSet properties and customize OnModelCreating
+ - Setup EF migrations for SqlLite database
+    ```
+    dotnet tool install --global dotnet-ef
+    dotnet add package Microsoft.EntityFrameworkCore.Design
+    dotnet ef migrations add InitialCreate -p ./src/Data/Data.csproj -s ./src/Site/Site.csproj
+    dotnet ef database update -p ./src/Data/Data.csproj -s ./src/Site/Site.csproj
+    ```
